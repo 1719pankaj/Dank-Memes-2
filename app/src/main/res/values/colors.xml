@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="meme_pink">#FF355D</color>
+    <color name="meme_pink_dark">#B22541</color>
+    <color name="super_light_pink">#FEDBE9</color>
+    <color name="link_blue">#5f55bd</color>
+    <color name="blue">#1673EA</color>
 </resources>
