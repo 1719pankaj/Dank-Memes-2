@@ -16,7 +16,7 @@ class OnboardingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_onboarding, container, false)
 
-        view.nextWPermission.setOnClickListener { findNavController().navigate(R.id.action_onboardingFragment_to_mainFragment) }
+
 
         return view
     }
