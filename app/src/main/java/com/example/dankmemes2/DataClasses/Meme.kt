@@ -1,4 +1,4 @@
-package com.example.dankmemes2
+package com.example.dankmemes2.DataClasses
 
 data class Meme(
     val subreddit: String,

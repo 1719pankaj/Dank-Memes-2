@@ -1,7 +1,6 @@
 package com.example.dankmemes2.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.dankmemes2.Meme
-import com.example.dankmemes2.MemeListAdapter
+import com.example.dankmemes2.DataClasses.Meme
+import com.example.dankmemes2.Adapters.MemeListAdapter
 import com.example.dankmemes2.MySingleton
 import com.example.dankmemes2.R
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -28,7 +27,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        view.fab.setOnClickListener {  }
+        view.fab.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_configFragment) }
 
         //IDHAR SE
         val manager = LinearLayoutManager(context)
@@ -85,12 +84,8 @@ class MainFragment : Fragment() {
                 if(format != ".gif") {
                     memeArray.add(meme)
                 }
-                Log.i("TAGG","fetch data core")
             }
             mAdapter.updateMeme(memeArray)
-            Log.i("TAGG", "${memeArray.size}")
-
-
         }, Response.ErrorListener {
             Toast.makeText(context, "Net off hai shayad", Toast.LENGTH_SHORT).show()
         }) {  }

@@ -1,4 +1,4 @@
-package com.example.dankmemes2
+package com.example.dankmemes2.Adapters
 
 import android.Manifest
 import android.app.Activity
@@ -24,6 +24,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.dankmemes2.Fragments.MainFragment
+import com.example.dankmemes2.DataClasses.Meme
+import com.example.dankmemes2.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
