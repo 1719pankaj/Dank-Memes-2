@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:outlineProvider="bounds"
-    android:elevation="10dp"
-    android:background="@drawable/shape"
-    android:layout_margin="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_margin="2dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,11 +13,11 @@
         android:id="@+id/checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="12dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         tools:layout_editor_absoluteX="16dp"
         tools:text="PlaceHolderText" />
 

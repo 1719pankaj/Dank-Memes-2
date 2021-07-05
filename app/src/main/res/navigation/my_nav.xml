@@ -21,7 +21,9 @@
         tools:layout="@layout/fragment_onboarding" >
         <action
             android:id="@+id/action_onboardingFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/onboardingFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -30,10 +32,14 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_onboardingFragment"
-            app:destination="@id/onboardingFragment" />
+            app:destination="@id/onboardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/configFragment"
@@ -42,6 +48,8 @@
         tools:layout="@layout/fragment_config" >
         <action
             android:id="@+id/action_configFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/configFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

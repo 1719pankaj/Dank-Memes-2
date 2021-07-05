@@ -11,16 +11,23 @@ import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.DataClasses.Subreddit
 import com.example.dankmemes2.Fragments.ConfigFragment
 import com.example.dankmemes2.R
+import kotlinx.android.synthetic.main.item_subreddit.view.*
 
-class SubredditListAdapterval (val activity: Activity, val context: Context) : RecyclerView.Adapter<SubredditListAdapterval.SubredditViewHolder>() {
+class SubredditListAdapterval (val item: ArrayList<Subreddit>, val activity: Activity, val context: Context, private val listener: SubredditItemChecked) : RecyclerView.Adapter<SubredditListAdapterval.SubredditViewHolder>() {
 
-    private val item: ArrayList<Subreddit> = ArrayList()
-    val configFragment = ConfigFragment()
-    lateinit var final_list: ArrayList<String>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubredditViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subreddit, parent, false)
         val viewHolder = SubredditViewHolder(view)
+
+        view.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                listener.onItemChecked(item[viewHolder.adapterPosition])
+            }
+            else{
+                listener.onItemUnchecked(item[viewHolder.adapterPosition])
+            }
+        }
         return viewHolder
     }
 
@@ -28,11 +35,6 @@ class SubredditListAdapterval (val activity: Activity, val context: Context) : R
         val currentSubreddit = item[position]
 
         holder.checkBox.text = currentSubreddit.name
-        holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
-                final_list.add(currentSubreddit.name)
-            }
-        }
     }
 
     override fun getItemCount(): Int {
@@ -40,11 +42,16 @@ class SubredditListAdapterval (val activity: Activity, val context: Context) : R
     }
 
     fun updateMeme(updatedSubs: ArrayList<Subreddit>) {
-        item.addAll(updatedSubs)
+        item.addAll(updatedSubs.shuffled())
         notifyDataSetChanged()
     }
 
     inner class SubredditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checkBox: CheckBox = itemView.findViewById(R.id.checkbox)
+    }
+
+    interface SubredditItemChecked{
+        fun onItemChecked(item: Subreddit)
+        fun onItemUnchecked(item: Subreddit)
     }
 }

@@ -128,14 +128,18 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
             .setDescription("Downloading Meme")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,
-                File.separator + "DankMemes" + File.separator + "$title${url.subSequence(url.length-4, url.length)}")
+                File.separator + "DankMemes" + File.separator + "${System.currentTimeMillis()}${url.subSequence(url.length-4, url.length)}")
             .setAllowedOverMetered(true)
 
-        val fileName = "$title${url.subSequence(url.length-4, url.length)}"
+        val fileName = "$title - DankMemes${url.subSequence(url.length-4, url.length)}"
 
 
         val manager = activity.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val downloadId = manager.enqueue(request)
+        val downloadId = try {
+            manager.enqueue(request)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         if (!silent) {
             Toast.makeText(context, "Image is being saved", Toast.LENGTH_SHORT).show()
         }
