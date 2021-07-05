@@ -26,6 +26,7 @@ import com.bumptech.glide.request.target.Target
 import com.example.dankmemes2.Fragments.MainFragment
 import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.R
+import com.google.firebase.firestore.FirebaseFirestore
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -73,6 +74,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
             .into(holder.imageView)
         holder.saveBT.setOnClickListener { downloadFromUrl(currentImage.url, currentImage.title, false) }
         holder.shareBT.setOnClickListener { shareMeme(currentImage.title, holder.imageView) }
+        holder.starrBT.setOnClickListener { saveToFirestore(items[position]) }
 
     }
 
@@ -155,7 +157,24 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
         return fileName
     }
 
+    fun saveToFirestore(meme: Meme) {
+        val db = FirebaseFirestore.getInstance()
+        val memeToGo: MutableMap<String, Any> = HashMap()
+        memeToGo["url"] = meme.url
+        memeToGo["ups"] = meme.ups
+        memeToGo["title"] = meme.title
+        memeToGo["subreddit"] = meme.subreddit
+        memeToGo["author"] = meme.author
 
+        db.collection("starrMemes")
+            .add(memeToGo)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Added to super Dank DB", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener{
+                Toast.makeText(context, "Tell the idiot who made this to update his DB access keys", Toast.LENGTH_LONG).show()
+            }
+    }
 
     inner class MemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -165,6 +184,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
         val subredditTV: TextView = itemView.findViewById(R.id.subredditTV)
         val saveBT: Button = itemView.findViewById(R.id.saveBT)
         val shareBT: Button = itemView.findViewById(R.id.shareBT)
+        val starrBT: Button = itemView.findViewById(R.id.starrBT)
 
     }
 

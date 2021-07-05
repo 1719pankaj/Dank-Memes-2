@@ -85,7 +85,12 @@ class MainFragment : Fragment() {
         else if(getUserPreferences()!!.isNotEmpty()){
             val userSource = getUserPreferences()
             val size = userSource!!.size
-            val setSize: Int = 6/size
+            val setSize: Int = try {
+                6/size
+            } catch (e: Exception) {
+                e.printStackTrace()
+                6
+            }
 
 
             for(i in userSource) {

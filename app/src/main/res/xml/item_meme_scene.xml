@@ -24,6 +24,14 @@
                motion:motionTarget="@+id/shareBT"
                motion:framePosition="21"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/starrBT"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/starrBT"
+               motion:framePosition="21"
+               android:alpha="0" />
        </KeyFrameSet>
         <OnClick motion:targetId="@+id/imageView" />
     </Transition>
@@ -35,7 +43,6 @@
             android:id="@+id/saveBT"
             motion:layout_constraintTop_toBottomOf="@+id/imageView"
             android:layout_marginTop="16dp"
-            motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toEndOf="@+id/shareBT" />
         <Constraint
             android:layout_width="0dp"
@@ -63,19 +70,13 @@
             android:layout_marginTop="16dp"
             android:id="@+id/upsLabelTV" />
         <Constraint
-            motion:layout_constraintStart_toEndOf="@+id/saveBT"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
             motion:layout_constraintBottom_toBottomOf="@+id/saveBT"
-            android:layout_marginStart="18dp"
             motion:layout_constraintTop_toTopOf="@+id/saveBT"
-            android:id="@+id/titleLabelTV" />
-        <Constraint
-            android:id="@+id/titleTV"
-            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            motion:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
+            android:id="@+id/titleLabelTV"
+            motion:layout_constraintVertical_bias="1.0"
+            motion:layout_constraintStart_toEndOf="@+id/starrBT"
             android:layout_marginStart="16dp" />
         <Constraint
             android:id="@+id/titleTV"
@@ -84,6 +85,19 @@
             android:layout_height="1dp"
             motion:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
             android:layout_marginStart="16dp" />
+        <Constraint
+            android:id="@+id/titleTV"
+            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            motion:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
+            android:layout_marginStart="16dp" />
+        <Constraint
+            android:layout_height="1dp"
+            android:layout_width="wrap_content"
+            android:id="@+id/starrBT"
+            motion:layout_constraintStart_toEndOf="@+id/saveBT"
+            motion:layout_constraintBaseline_toBaselineOf="@+id/saveBT" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -131,12 +145,19 @@
             android:layout_marginTop="16dp"
             android:id="@+id/upsLabelTV" />
         <Constraint
-            motion:layout_constraintStart_toEndOf="@+id/saveBT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintBottom_toBottomOf="@+id/saveBT"
-            android:layout_marginStart="18dp"
             motion:layout_constraintTop_toTopOf="@+id/saveBT"
-            android:id="@+id/titleLabelTV" />
+            android:id="@+id/titleLabelTV"
+            motion:layout_constraintStart_toEndOf="@+id/starrBT"
+            android:layout_marginStart="18dp" />
+        <Constraint
+            android:layout_height="25dp"
+            android:layout_width="24dp"
+            android:id="@+id/starrBT"
+            motion:layout_constraintBaseline_toBaselineOf="@+id/saveBT"
+            motion:layout_constraintStart_toEndOf="@+id/saveBT"
+            android:layout_marginStart="18dp" />
     </ConstraintSet>
 </MotionScene>
