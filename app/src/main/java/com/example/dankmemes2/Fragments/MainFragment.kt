@@ -70,7 +70,7 @@ class MainFragment : Fragment() {
     }
 
     fun fetchData(): Boolean {
-        if(getUserPreferences() == null) {
+        if(getUserPreferences().isNullOrEmpty()) {
             val url = "https://meme-api.herokuapp.com/gimme/10"
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET, url, null, {
                 val memeJsonArray = it.getJSONArray("memes")
@@ -82,7 +82,7 @@ class MainFragment : Fragment() {
             }) {}
             context?.let { MySingleton.getInstance(it).addToRequestQueue(jsonObjectRequest) }
         }
-        else if(getUserPreferences() != null){
+        else if(getUserPreferences()!!.isNotEmpty()){
             val userSource = getUserPreferences()
             val size = userSource!!.size
             val setSize: Int = 6/size

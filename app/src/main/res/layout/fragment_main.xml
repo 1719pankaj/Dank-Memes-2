@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="24dp"
+        android:background="@color/meme_pink_compliment_blue"
         android:contentDescription="@string/options"
         android:src="@drawable/ic_my_icon"
         app:layout_constraintBottom_toBottomOf="parent"
