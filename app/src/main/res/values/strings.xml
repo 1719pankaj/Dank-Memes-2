@@ -136,4 +136,7 @@ Ty Coon, President of Vice
 This General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License.</string>
     <string name="options">Options</string>
     <string name="ConfigRecyclerLable">Select the sources you want to appear in your feeds</string>
+    <string name="configfab">configFab</string>
+    <string name="starfab">starFab</string>
+    <string name="configback">configBack</string>
 </resources>

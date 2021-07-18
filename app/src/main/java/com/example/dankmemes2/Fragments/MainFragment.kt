@@ -2,10 +2,11 @@ package com.example.dankmemes2.Fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -18,7 +19,6 @@ import com.example.dankmemes2.Adapters.MemeListAdapter
 import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.MySingleton
 import com.example.dankmemes2.R
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.json.JSONArray
@@ -30,10 +30,20 @@ class MainFragment : Fragment() {
     var downloadId = 0
     var isScrolling: Boolean = false
 
+    private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_open_anim) }
+    private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_close_anim) }
+    private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.from_bottom_anim) }
+    private val toBottom: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.to_bottom_anim) }
+
+    private var clicked: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
-        view.fab.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_configFragment) }
-        view.fabTemp.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_starFragment) }
+        view.overflowFab.setOnClickListener {
+            onAddClicked()
+        }
+        view.configFab.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_configFragment) }
+        view.starFab.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_starFragment) }
 
         //IDHAR SE
         val manager = LinearLayoutManager(context)
@@ -70,7 +80,43 @@ class MainFragment : Fragment() {
         return view
     }
 
+    private fun onAddClicked() {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
 
+    private fun setVisibility(clicked: Boolean) {
+        if(!clicked) {
+            configFab.visibility = View.VISIBLE
+            starFab.visibility = View.VISIBLE
+        } else {
+            configFab.visibility = View.INVISIBLE
+            starFab.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        if(!clicked) {
+            overflowFab.startAnimation(rotateOpen)
+            configFab.startAnimation(fromBottom)
+            starFab.startAnimation(fromBottom)
+        } else {
+            overflowFab.startAnimation(rotateClose)
+            configFab.startAnimation(toBottom)
+            starFab.startAnimation(toBottom)
+        }
+    }
+
+    private fun setClickable(clicked: Boolean) {
+        if(!clicked) {
+            configFab.isClickable = true
+            starFab.isClickable = true
+        } else {
+            configFab.isClickable = false
+            starFab.isClickable = false
+        }
+    }
 
     fun fetchData(): Boolean {
         if(getUserPreferences().isNullOrEmpty()) {
