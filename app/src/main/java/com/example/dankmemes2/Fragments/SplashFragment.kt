@@ -22,7 +22,7 @@ class SplashFragment : Fragment() {
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
             }
-        }, 500)
+        }, 1500)
 
         return view
     }

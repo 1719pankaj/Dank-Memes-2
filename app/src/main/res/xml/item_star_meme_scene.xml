@@ -56,14 +56,6 @@
                motion:motionTarget="@+id/subredditTV"
                motion:framePosition="75"
                android:alpha="0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/starrBT"
-               motion:framePosition="0"
-               android:alpha="0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/starrBT"
-               motion:framePosition="21"
-               android:alpha="0" />
        </KeyFrameSet>
         <OnClick motion:targetId="@+id/imageView" />
     </Transition>
@@ -110,8 +102,8 @@
             motion:layout_constraintTop_toTopOf="@+id/saveBT"
             android:id="@+id/titleLabelTV"
             motion:layout_constraintVertical_bias="1.0"
-            motion:layout_constraintStart_toEndOf="@+id/saveBT"
-            android:layout_marginStart="12dp" />
+            motion:layout_constraintStart_toEndOf="@+id/starrBT"
+            android:layout_marginStart="16dp" />
         <Constraint
             android:id="@+id/titleTV"
             motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
@@ -217,7 +209,6 @@
             motion:layout_constraintBottom_toBottomOf="@+id/saveBT"
             motion:layout_constraintTop_toTopOf="@+id/saveBT"
             android:id="@+id/titleLabelTV"
-            motion:layout_constraintVertical_bias="0.0"
             motion:layout_constraintStart_toEndOf="@+id/starrBT"
             android:layout_marginStart="18dp" />
         <Constraint

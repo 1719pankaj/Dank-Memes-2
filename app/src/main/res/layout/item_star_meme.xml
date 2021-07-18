@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:background="@drawable/shape"
+    android:outlineProvider="bounds"
+    android:elevation="10dp"
+    app:layoutDescription="@xml/item_meme_scene">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/saveBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/save_icon"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/shareBT"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+    <Button
+        android:id="@+id/shareBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/share_icon"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/saveBT"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="192dp" />
+
+    <ImageView
+        android:id="@+id/upsLabelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/up_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveBT" />
+
+    <TextView
+        android:id="@+id/authorLabelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Author:"
+        app:layout_constraintStart_toStartOf="@+id/upsLabelTV"
+        app:layout_constraintTop_toBottomOf="@+id/upsLabelTV" />
+
+    <TextView
+        android:id="@+id/subredditLabelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:text="Source:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/authorLabelTV"
+        app:layout_constraintTop_toBottomOf="@+id/authorLabelTV" />
+
+    <TextView
+        android:id="@+id/upsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/meme_pink"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/upsLabelTV"
+        app:layout_constraintStart_toEndOf="@+id/upsLabelTV"
+        app:layout_constraintTop_toTopOf="@+id/upsLabelTV" />
+
+    <TextView
+        android:id="@+id/authorTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/authorLabelTV"
+        app:layout_constraintStart_toEndOf="@+id/authorLabelTV" />
+
+    <TextView
+        android:id="@+id/subredditTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subredditLabelTV"
+        app:layout_constraintStart_toEndOf="@+id/subredditLabelTV" />
+
+    <TextView
+        android:id="@+id/titleLabelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Title:"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/saveBT"
+        app:layout_constraintStart_toEndOf="@+id/saveBT"
+        app:layout_constraintTop_toTopOf="@+id/saveBT" />
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
+        app:layout_constraintStart_toEndOf="@+id/titleLabelTV" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,8 +1,8 @@
 package com.example.dankmemes2.Fragments
 
-import android.R.array
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,21 +18,22 @@ import com.example.dankmemes2.Adapters.MemeListAdapter
 import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.MySingleton
 import com.example.dankmemes2.R
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.json.JSONArray
-import java.util.*
 import kotlin.collections.ArrayList
 
 
 class MainFragment : Fragment() {
     lateinit var mAdapter: MemeListAdapter
     var downloadId = 0
-    var isScrolling = false
+    var isScrolling: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         view.fab.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_configFragment) }
+        view.fabTemp.setOnClickListener { findNavController().navigate(R.id.action_mainFragment_to_starFragment) }
 
         //IDHAR SE
         val manager = LinearLayoutManager(context)
@@ -69,6 +70,8 @@ class MainFragment : Fragment() {
         return view
     }
 
+
+
     fun fetchData(): Boolean {
         if(getUserPreferences().isNullOrEmpty()) {
             val url = "https://meme-api.herokuapp.com/gimme/10"
@@ -76,7 +79,7 @@ class MainFragment : Fragment() {
                 val memeJsonArray = it.getJSONArray("memes")
                 val memeArray = ArrayList<Meme>()
                 getMemeMetadata(memeJsonArray, memeArray)
-                mAdapter.updateMeme(memeArray)
+                mAdapter.appendMeme(memeArray)
             }, Response.ErrorListener {
                 Toast.makeText(context, "Net off hai shayad", Toast.LENGTH_SHORT).show()
             }) {}
@@ -85,13 +88,8 @@ class MainFragment : Fragment() {
         else if(getUserPreferences()!!.isNotEmpty()){
             val userSource = getUserPreferences()
             val size = userSource!!.size
-            val setSize: Int = try {
-                6/size
-            } catch (e: Exception) {
-                e.printStackTrace()
-                6
-            }
-
+            val setSize: Int = try { 6/size }
+            catch (e: Exception) { e.printStackTrace(); 6 }
 
             for(i in userSource) {
                 val i = if(i == "/Default") "" else i
@@ -102,7 +100,7 @@ class MainFragment : Fragment() {
 
                     getMemeMetadata(memeJsonArray, memeArray)
 
-                    mAdapter.updateMeme(memeArray)
+                    mAdapter.appendMeme(memeArray)
                 }, Response.ErrorListener {
                     Toast.makeText(context, "Net off hai shayad", Toast.LENGTH_SHORT).show()
                 }) {}
@@ -131,6 +129,7 @@ class MainFragment : Fragment() {
         }
         return memeArray
     }
+
 
     private fun getUserPreferences(): MutableSet<String>? {
         val sharedPref = requireActivity().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)

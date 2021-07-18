@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_configFragment"
             app:destination="@id/configFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_starFragment"
+            app:destination="@id/starFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -50,6 +53,17 @@
             android:id="@+id/action_configFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpTo="@id/configFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/starFragment"
+        android:name="com.example.dankmemes2.Fragments.StarFragment"
+        android:label="fragment_star"
+        tools:layout="@layout/fragment_star" >
+        <action
+            android:id="@+id/action_starFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/starFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

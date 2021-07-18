@@ -11,7 +11,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,13 +23,10 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.Fragments.MainFragment
+import com.example.dankmemes2.DataClasses.Meme
 import com.example.dankmemes2.R
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -39,20 +35,19 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.File
 import java.io.FileOutputStream
 
-
-class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerView.Adapter<MemeListAdapter.MemeViewHolder>() {
+class StarMemeListAdapter(val activity: Activity, val context: Context) : RecyclerView.Adapter<StarMemeListAdapter.StarMemeViewHolder>() {
 
     private val items: ArrayList<Meme> = ArrayList()
     val mainFragment = MainFragment()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemeViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_meme, parent, false)
-        val viewHolder = MemeViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StarMemeViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_star_meme, parent, false)
+        val viewHolder = StarMemeViewHolder(view)
         return viewHolder
     }
 
 
-    override fun onBindViewHolder(holder: MemeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: StarMemeViewHolder, position: Int) {
         val currentImage = items[position]
 
         holder.upsTV.text = currentImage.ups
@@ -79,9 +74,6 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
             .into(holder.imageView)
         holder.saveBT.setOnClickListener { downloadFromUrl(currentImage.url, currentImage.title, false) }
         holder.shareBT.setOnClickListener { shareMeme(currentImage.title, holder.imageView) }
-        holder.starrBT.setOnClickListener {
-            if (saveToFirestore(items[position])) { holder.starrBT.visibility = View.GONE }
-        }
 
     }
 
@@ -169,32 +161,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
         return fileName
     }
 
-    fun saveToFirestore(meme: Meme): Boolean {
-        var onSuccess: Boolean = false
-        val db = FirebaseFirestore.getInstance()
-        val memeToGo: MutableMap<String, Any> = HashMap()
-        memeToGo["url"] = meme.url
-        memeToGo["preview"] = meme.preview
-        memeToGo["title"] = meme.title
-        memeToGo["subreddit"] = meme.subreddit
-        memeToGo["author"] = meme.author
-        memeToGo["ups"] = meme.ups
-
-        db.collection("starrMemes")
-            .document(meme.url.substring(18))
-            .set(memeToGo)
-            .addOnSuccessListener {
-                Toast.makeText(context, "Added to super Dank DB", Toast.LENGTH_SHORT).show()
-                onSuccess = true
-            }
-            .addOnFailureListener{
-                Toast.makeText(context, "Tell the idiot who made this to update his DB access keys", Toast.LENGTH_LONG).show()
-                onSuccess = false
-            }
-        return onSuccess
-    }
-
-    inner class MemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class StarMemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val upsTV: TextView = itemView.findViewById(R.id.upsTV)
         val titleTV: TextView = itemView.findViewById(R.id.titleTV)
@@ -202,7 +169,6 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
         val subredditTV: TextView = itemView.findViewById(R.id.subredditTV)
         val saveBT: Button = itemView.findViewById(R.id.saveBT)
         val shareBT: Button = itemView.findViewById(R.id.shareBT)
-        val starrBT: Button = itemView.findViewById(R.id.starrBT)
     }
 
 }

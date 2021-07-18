@@ -11,10 +11,10 @@
 
     <TextView
         android:id="@+id/splashTitle"
-        android:layout_width="202dp"
+        android:layout_width="wrap_content"
         android:layout_height="137dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Dank\nMemes."
+        android:text="Dank\nMemes 2."
         android:textColor="@color/white"
         android:textSize="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
