@@ -2,6 +2,7 @@ package com.example.dankmemes2.Fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,7 @@ class MainFragment : Fragment() {
         view.recyclerView.layoutManager = manager
         mAdapter = MemeListAdapter(requireActivity(), requireContext())
         view.recyclerView.adapter = mAdapter
-        val items = fetchData()
+        fetchData(view)
         view.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -65,14 +66,14 @@ class MainFragment : Fragment() {
                 val scrollOutItems = manager.findFirstVisibleItemPosition()
 
                 if(isScrolling && (currentItems + scrollOutItems == totalItems)) {
-                    fetchData()
+                    fetchData(view)
                     !isScrolling
                 }
             }
         })
         view.swipeContainer.setOnRefreshListener {
             mAdapter.clear()
-            fetchData()
+            fetchData(view)
             swipeContainer.setRefreshing(false)
         }
         //IDHAR TAK SAB RECYCLER
@@ -96,6 +97,7 @@ class MainFragment : Fragment() {
         }
     }
 
+
     private fun setAnimation(clicked: Boolean) {
         if(!clicked) {
             overflowFab.startAnimation(rotateOpen)
@@ -118,7 +120,9 @@ class MainFragment : Fragment() {
         }
     }
 
-    fun fetchData(): Boolean {
+    fun fetchData(view: View): Boolean {
+        Log.i("Tagger", "Progress bar storted")
+        view.progressBar.visibility = View.VISIBLE
         if(getUserPreferences().isNullOrEmpty()) {
             val url = "https://meme-api.herokuapp.com/gimme/10"
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET, url, null, {
@@ -126,6 +130,9 @@ class MainFragment : Fragment() {
                 val memeArray = ArrayList<Meme>()
                 getMemeMetadata(memeJsonArray, memeArray)
                 mAdapter.appendMeme(memeArray)
+
+                view.progressBar.visibility = View.GONE
+
             }, Response.ErrorListener {
                 Toast.makeText(context, "Net off hai shayad", Toast.LENGTH_SHORT).show()
             }) {}
@@ -136,17 +143,17 @@ class MainFragment : Fragment() {
             val size = userSource!!.size
             val setSize: Int = try { 6/size }
             catch (e: Exception) { e.printStackTrace(); 6 }
-
             for(i in userSource) {
                 val i = if(i == "/Default") "" else i
                 val url = "https://meme-api.herokuapp.com/gimme$i/$setSize"
                 val jsonObjectRequest = object : JsonObjectRequest(Method.GET, url, null, {
                     val memeJsonArray = it.getJSONArray("memes")
                     val memeArray = ArrayList<Meme>()
-
                     getMemeMetadata(memeJsonArray, memeArray)
-
                     mAdapter.appendMeme(memeArray)
+                    view.progressBar.visibility = View.GONE
+
+
                 }, Response.ErrorListener {
                     Toast.makeText(context, "Net off hai shayad", Toast.LENGTH_SHORT).show()
                 }) {}

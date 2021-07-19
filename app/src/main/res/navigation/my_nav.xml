@@ -23,8 +23,8 @@
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
-            android:id="@+id/action_onboardingFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            android:id="@+id/action_onboardingFragment_to_configFragment"
+            app:destination="@id/configFragment"
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
     </fragment>

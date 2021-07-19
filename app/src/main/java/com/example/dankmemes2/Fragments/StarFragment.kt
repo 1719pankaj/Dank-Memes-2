@@ -22,6 +22,7 @@ class StarFragment : Fragment() {
     lateinit var mAdapter: StarMemeListAdapter
     var isScrolling: Boolean = false
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_star, container, false)
@@ -33,7 +34,7 @@ class StarFragment : Fragment() {
         view.starRecyclerView.layoutManager = manager
         mAdapter = StarMemeListAdapter(requireActivity(), requireContext())
         view.starRecyclerView.adapter = mAdapter
-        val items = fetchStars()
+        val items = fetchStars(view)
         view.starRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -48,13 +49,13 @@ class StarFragment : Fragment() {
                 val scrollOutItems = manager.findFirstVisibleItemPosition()
 
                 if(isScrolling && (currentItems + scrollOutItems == totalItems)) {
-                    getFromFirestore()
+                    getFromFirestore(view)
                     !isScrolling
                 }
             }
         })
         view.starSwipeContainer.setOnRefreshListener {
-            fetchStars()
+            fetchStars(view)
             view.starSwipeContainer.setRefreshing(false)
         }
         //IDHAR TAK SAB RECYCLER
@@ -62,12 +63,13 @@ class StarFragment : Fragment() {
         return view
     }
 
-    fun fetchStars() {
+    fun fetchStars(view: View) {
         mAdapter.clear()
-        getFromFirestore()
+        getFromFirestore(view)
     }
 
-    private fun getFromFirestore() {
+    private fun getFromFirestore(view: View) {
+        view.starProgressBar.visibility = View.VISIBLE
         val db = FirebaseFirestore.getInstance()
         db.collection("starrMemes")
             .get()
@@ -83,6 +85,7 @@ class StarFragment : Fragment() {
                             document.data.getValue("ups").toString()
                         )
                         Log.i("tagg", meme.toString())
+                        view.starProgressBar.visibility = View.GONE
                         mAdapter.appendSingleMeme(meme)
                     }
                 }

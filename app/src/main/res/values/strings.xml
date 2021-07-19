@@ -139,4 +139,5 @@ This General Public License does not permit incorporating your program into prop
     <string name="configfab">configFab</string>
     <string name="starfab">starFab</string>
     <string name="configback">configBack</string>
+    <string name="don_t_sweat">Do not sweat on these, you could totally change them later on in settings</string>
 </resources>

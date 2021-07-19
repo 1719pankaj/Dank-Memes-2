@@ -25,8 +25,7 @@ class OnboardingFragment : Fragment() {
 
         view.nextWpermission.setOnClickListener { dexter() }
         view.nextWOpermission.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_mainFragment)
-            onBoardingFinished()
+            findNavController().navigate(R.id.action_onboardingFragment_to_configFragment)
         }
 
         return view
@@ -39,8 +38,7 @@ class OnboardingFragment : Fragment() {
             .withListener(object: MultiplePermissionsListener {
                 override fun onPermissionsChecked(p0: MultiplePermissionsReport){
                     if (p0.areAllPermissionsGranted()) {
-                        findNavController().navigate(R.id.action_onboardingFragment_to_mainFragment)
-                        onBoardingFinished()
+                        findNavController().navigate(R.id.action_onboardingFragment_to_configFragment)
                     } else {
                         onboardingMessageTV.text = "If you want to continue without permission click continue without functionality Or grant permission"
                         nextWOpermission.visibility = View.VISIBLE
@@ -51,12 +49,6 @@ class OnboardingFragment : Fragment() {
                     p1?.continuePermissionRequest()
                 }
             }).check()
-    }
-    private fun onBoardingFinished() {
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean("Finished", true)
-        editor.apply()
     }
 
 }
