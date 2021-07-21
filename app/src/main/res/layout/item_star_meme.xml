@@ -124,4 +124,12 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
         app:layout_constraintStart_toEndOf="@+id/titleLabelTV" />
 
+    <Button
+        android:id="@+id/dropDownBT"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/down_arrow_icon"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="391dp" />
+
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,6 +1,7 @@
 package com.example.dankmemes2.Fragments
 
 import android.content.Context
+import android.graphics.Movie
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,13 +24,13 @@ import com.example.dankmemes2.R
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.json.JSONArray
-import kotlin.collections.ArrayList
 
 
 class MainFragment : Fragment() {
     lateinit var mAdapter: MemeListAdapter
     var downloadId = 0
     var isScrolling: Boolean = false
+    lateinit var memeArray: ArrayList<Meme>
 
     private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_open_anim) }
     private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(context, R.anim.rotate_close_anim) }
@@ -110,15 +111,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setClickable(clicked: Boolean) {
-        if(!clicked) {
-            configFab.isClickable = true
-            starFab.isClickable = true
-        } else {
-            configFab.isClickable = false
-            starFab.isClickable = false
-        }
-    }
 
     fun fetchData(view: View): Boolean {
         Log.i("Tagger", "Progress bar storted")
@@ -127,8 +119,9 @@ class MainFragment : Fragment() {
             val url = "https://meme-api.herokuapp.com/gimme/10"
             val jsonObjectRequest = object : JsonObjectRequest(Method.GET, url, null, {
                 val memeJsonArray = it.getJSONArray("memes")
-                val memeArray = ArrayList<Meme>()
+                memeArray = ArrayList<Meme>()
                 getMemeMetadata(memeJsonArray, memeArray)
+
                 mAdapter.appendMeme(memeArray)
 
                 view.progressBar.visibility = View.GONE
@@ -148,7 +141,7 @@ class MainFragment : Fragment() {
                 val url = "https://meme-api.herokuapp.com/gimme$i/$setSize"
                 val jsonObjectRequest = object : JsonObjectRequest(Method.GET, url, null, {
                     val memeJsonArray = it.getJSONArray("memes")
-                    val memeArray = ArrayList<Meme>()
+                    memeArray = ArrayList<Meme>()
                     getMemeMetadata(memeJsonArray, memeArray)
                     mAdapter.appendMeme(memeArray)
                     view.progressBar.visibility = View.GONE
@@ -182,7 +175,6 @@ class MainFragment : Fragment() {
         }
         return memeArray
     }
-
 
     private fun getUserPreferences(): MutableSet<String>? {
         val sharedPref = requireActivity().getSharedPreferences("userPreferences", Context.MODE_PRIVATE)

@@ -65,4 +65,7 @@ dependencies {
 
     //Dexter - Permission
     implementation 'com.karumi:dexter:6.2.2'
+
+    //PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }

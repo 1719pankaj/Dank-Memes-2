@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="180">
+        motion:duration="250">
        <KeyFrameSet>
            <KeyAttribute
                motion:motionTarget="@+id/saveBT"
@@ -56,8 +56,16 @@
                motion:motionTarget="@+id/subredditTV"
                motion:framePosition="75"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/starDropDownBT"
+               motion:framePosition="0"
+               android:rotation="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/starDropDownBT"
+               motion:framePosition="100"
+               android:rotation="180" />
        </KeyFrameSet>
-        <OnClick motion:targetId="@+id/imageView" />
+        <OnClick motion:targetId="@+id/starDropDownBT" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

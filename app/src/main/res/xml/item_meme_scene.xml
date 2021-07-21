@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="180">
+        motion:duration="250">
        <KeyFrameSet>
            <KeyAttribute
                motion:motionTarget="@+id/saveBT"
@@ -64,8 +64,16 @@
                motion:motionTarget="@+id/starrBT"
                motion:framePosition="21"
                android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/dropDownBT"
+               motion:framePosition="0"
+               android:rotation="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/dropDownBT"
+               motion:framePosition="100"
+               android:rotation="180" />
        </KeyFrameSet>
-        <OnClick motion:targetId="@+id/imageView" />
+        <OnClick motion:targetId="@+id/dropDownBT" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -165,6 +173,14 @@
             android:layout_height="1dp"
             motion:layout_editor_absoluteX="201dp"
             motion:layout_constraintBaseline_toBaselineOf="@+id/saveBT" />
+        <Constraint
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:id="@+id/dropDownBT"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="38dp"
+            motion:layout_constraintTop_toTopOf="@+id/upsLabelTV"
+            motion:layout_constraintBottom_toBottomOf="@+id/upsLabelTV" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -233,5 +249,13 @@
             motion:layout_constraintStart_toEndOf="@+id/saveBT"
             android:layout_marginStart="18dp"
             motion:layout_constraintTop_toTopOf="@+id/saveBT" />
+        <Constraint
+            android:layout_height="30dp"
+            motion:layout_constraintTop_toTopOf="@+id/upsLabelTV"
+            android:layout_width="30dp"
+            android:id="@+id/dropDownBT"
+            motion:layout_constraintBottom_toBottomOf="@+id/upsLabelTV"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="38dp" />
     </ConstraintSet>
 </MotionScene>

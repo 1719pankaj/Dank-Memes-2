@@ -67,7 +67,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
             .load(currentImage.url)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    holder.imageView.setImageResource(R.drawable.load_failed)
+                    holder.photoView.setImageResource(R.drawable.load_failed)
                     return false
                 }
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
@@ -75,9 +75,9 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
                 }
             })
             .placeholder(R.drawable.loading)
-            .into(holder.imageView)
+            .into(holder.photoView)
         holder.saveBT.setOnClickListener { downloadFromUrl(currentImage.url, currentImage.title, false) }
-        holder.shareBT.setOnClickListener { shareMeme(currentImage.title, holder.imageView) }
+        holder.shareBT.setOnClickListener { shareMeme(currentImage.title, holder.photoView) }
         holder.starrBT.setOnClickListener {
             if (saveToFirestore(items[position])) { holder.starrBT.visibility = View.GONE }
         }
@@ -194,7 +194,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
     }
 
     inner class MemeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        val photoView: ImageView = itemView.findViewById(R.id.imageView)
         val upsTV: TextView = itemView.findViewById(R.id.upsTV)
         val titleTV: TextView = itemView.findViewById(R.id.titleTV)
         val authorTV: TextView = itemView.findViewById(R.id.authorTV)
