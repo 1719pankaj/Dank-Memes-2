@@ -104,36 +104,33 @@
         <Constraint
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/saveBT"
-            android:layout_marginStart="38dp"
+            android:layout_marginStart="24dp"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
             android:id="@+id/upsLabelTV"
             motion:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            motion:layout_constraintTop_toBottomOf="@+id/titleTV"
+            android:layout_marginTop="11dp" />
         <Constraint
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            motion:layout_constraintBottom_toBottomOf="@+id/saveBT"
-            motion:layout_constraintTop_toTopOf="@+id/saveBT"
+            android:layout_height="wrap_content"
             android:id="@+id/titleLabelTV"
-            motion:layout_constraintVertical_bias="1.0"
-            motion:layout_constraintStart_toEndOf="@+id/saveBT"
-            android:layout_marginStart="12dp" />
+            motion:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintStart_toStartOf="@+id/upsLabelTV" />
         <Constraint
             android:id="@+id/titleTV"
-            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
-            android:layout_marginStart="16dp" />
+            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV" />
         <Constraint
             android:id="@+id/titleTV"
-            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
             android:layout_width="wrap_content"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             motion:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
-            android:layout_marginStart="16dp" />
+            motion:layout_constraintStart_toEndOf="@+id/titleLabelTV"
+            android:layout_marginStart="8dp" />
         <Constraint
             android:layout_height="1dp"
             android:layout_width="wrap_content"
@@ -230,12 +227,10 @@
         <Constraint
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toBottomOf="@+id/saveBT"
-            motion:layout_constraintTop_toTopOf="@+id/saveBT"
             android:id="@+id/titleLabelTV"
-            motion:layout_constraintVertical_bias="0.0"
-            motion:layout_constraintStart_toEndOf="@+id/starrBT"
-            android:layout_marginStart="18dp" />
+            motion:layout_constraintTop_toBottomOf="@+id/upsLabelTV"
+            motion:layout_constraintStart_toStartOf="@+id/upsLabelTV"
+            android:layout_marginTop="12dp" />
         <Constraint
             android:id="@+id/starrBT"
             android:layout_width="24dp"
@@ -257,5 +252,12 @@
             motion:layout_constraintBottom_toBottomOf="@+id/upsLabelTV"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="38dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/titleTV"
+            motion:layout_constraintStart_toStartOf="@+id/titleLabelTV"
+            android:id="@+id/authorLabelTV"
+            android:layout_marginTop="11dp" />
     </ConstraintSet>
 </MotionScene>

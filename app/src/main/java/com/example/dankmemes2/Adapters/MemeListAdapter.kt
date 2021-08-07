@@ -55,7 +55,7 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
         val currentImage = items[position]
 
         holder.upsTV.text = currentImage.ups
-        holder.titleTV.text = if (currentImage.title.length < 30) currentImage.title else (currentImage.title.subSequence(0, 25).toString()+"...")
+        holder.titleTV.text = currentImage.title
         holder.authorTV.text = currentImage.author
         holder.subredditTV.text = currentImage.subreddit
         val circularProgressDrawable = CircularProgressDrawable(context)

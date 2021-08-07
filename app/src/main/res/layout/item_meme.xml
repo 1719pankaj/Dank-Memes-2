@@ -124,7 +124,8 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/titleLabelTV"
-        app:layout_constraintStart_toEndOf="@+id/titleLabelTV" />
+        app:layout_constraintStart_toEndOf="@+id/titleLabelTV"
+        tools:text="Placeholder Title" />
 
     <Button
         android:id="@+id/starrBT"

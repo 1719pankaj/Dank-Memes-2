@@ -46,6 +46,12 @@ class ConfigFragment : Fragment() {
                 final_list.add("/BanglaMemes")
             }
 
+            if (getCheckState("/ProgrammerHumor")) {
+                view.programCB.isChecked = true
+                final_list.add("/ProgrammerHumor")
+            }
+
+            //Go add a checkbox to the fragment_config.xml
             //For every single new checkbox make a setOnCheckedChangeListener and copy my homework ( Change the names FFS )
             view.defaultCB.setOnCheckedChangeListener { buttonView, isChecked ->
                 if(isChecked) {
@@ -78,6 +84,17 @@ class ConfigFragment : Fragment() {
                     final_list.remove("/BanglaMemes")
                     saveCheckState("/BanglaMemes", false)
 
+                }
+            }
+
+            view.programCB.setOnCheckedChangeListener { buttonView, isChecked ->
+                if(isChecked) {
+                    final_list.add("/ProgrammerHumor")
+                    saveCheckState("/ProgrammerHumor", true)
+                }
+                else{
+                    final_list.remove("/ProgrammerHumor")
+                    saveCheckState("/ProgrammerHumor", false)
                 }
             }
             //Look I know this is not elegant but it works and I don't feel like implementing MVVM rn.

@@ -88,6 +88,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/indianCB"/>
 
+            <CheckBox
+                android:id="@+id/programCB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="/ProgrammerHumor"
+                android:layout_margin="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bengaliCB"/>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/configCardView"
                 android:layout_width="125dp"
@@ -97,7 +107,7 @@
                 android:layout_margin="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bengaliCB">
+                app:layout_constraintTop_toBottomOf="@id/programCB">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="125dp"
