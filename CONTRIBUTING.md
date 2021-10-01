@@ -21,11 +21,11 @@ Scan through our existing issues to find one that interests you. You can narrow 
 ### Make Changes
 
 ### The Usual
-Fork
-Compile
-Fix/Append changes
-Check for conflicts
-Push 
+Fork -> 
+Compile -> 
+Fix/Append changes -> 
+Check for conflicts -> 
+Push -> 
 Pull Request
 
 ### Your PR is merged!
