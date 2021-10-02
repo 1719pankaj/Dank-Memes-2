@@ -28,3 +28,37 @@ if (id == R.id.userprofile_btn) {
                 }
             });
             dialog.show();
+
+---------------------------------------------------------------------------
+Add this to home/main activity to check wether the user is logged in or not
+---------------------------------------------------------------------------
+
+
+FirebaseAuth auth;
+FirebaseDatabase firebaseDatabase;
+ProgressDialog progressDialog;
+
+auth = FirebaseAuth.getInstance();
+firebaseDatabase = FirebaseDatabase.getInstance();
+FirebaseUser currentUser = auth.getCurrentUser();
+
+
+        if (currentUser == null){
+            progressDialog.dismiss();
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        }
+
+        else if (!currentUser.isEmailVerified()){
+            progressDialog.dismiss();
+            Toast.makeText(this, "your email is not verified", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            finish();
+
+        }
+        else if (currentUser.isEmailVerified()){
+            progressDialog.dismiss();
+
+            Toast.makeText(this, "Email is verified", Toast.LENGTH_SHORT).show();
+        }
+
+
