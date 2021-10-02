@@ -1,0 +1,64 @@
+------------------------------------------------------------------------------------------------------------
+Copy this code on your home/main activity.  Also make 2 new buttons with name logout_btn and userprofile_btn
+------------------------------------------------------------------------------------------------------------
+Done by :- GeorgeET15
+*********************
+
+if (id == R.id.userprofile_btn) {
+            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.logout_btn){
+            Dialog dialog = new Dialog(HomeActivity.this,R.style.Dialog);
+            dialog.setContentView(R.layout.logout_dialog_layout);
+            Button yesButton, noButton;
+            yesButton = dialog.findViewById(R.id.yesButton);
+            noButton = dialog.findViewById(R.id.noButton);
+
+            yesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    auth.signOut();
+                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                }
+            });
+            noButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+
+---------------------------------------------------------------------------
+Add this to home/main activity to check wether the user is logged in or not
+---------------------------------------------------------------------------
+
+
+FirebaseAuth auth;
+FirebaseDatabase firebaseDatabase;
+ProgressDialog progressDialog;
+
+auth = FirebaseAuth.getInstance();
+firebaseDatabase = FirebaseDatabase.getInstance();
+FirebaseUser currentUser = auth.getCurrentUser();
+
+
+        if (currentUser == null){
+            progressDialog.dismiss();
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        }
+
+        else if (!currentUser.isEmailVerified()){
+            progressDialog.dismiss();
+            Toast.makeText(this, "your email is not verified", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            finish();
+
+        }
+        else if (currentUser.isEmailVerified()){
+            progressDialog.dismiss();
+
+            Toast.makeText(this, "Email is verified", Toast.LENGTH_SHORT).show();
+        }
+
+
