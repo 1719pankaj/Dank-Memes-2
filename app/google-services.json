@@ -1,0 +1,195 @@
+{
+  "project_info": {
+    "project_number": "224830972393",
+    "firebase_url": "https://menstruationcare-52744-default-rtdb.firebaseio.com",
+    "project_id": "menstruationcare-52744",
+    "storage_bucket": "menstruationcare-52744.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224830972393:android:40e140b87f80ff9af0ab78",
+        "android_client_info": {
+          "package_name": "com.example.dankmemes2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl4iVZriJJvVWVxAEnhfVymKCvjA-K3BI"
+        },
+        {
+          "current_key": "AIzaSyCNaOneEyZp8Ziro2muJrxRItZekesBm5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224830972393:android:7a497a0df3fc3092f0ab78",
+        "android_client_info": {
+          "package_name": "com.gmenstruationcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224830972393-g823tq9u40ubtm7shdq7003c8j143p1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmenstruationcare",
+            "certificate_hash": "516a5f2992bad98858fd0634486d7d9a11392ba1"
+          }
+        },
+        {
+          "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl4iVZriJJvVWVxAEnhfVymKCvjA-K3BI"
+        },
+        {
+          "current_key": "AIzaSyCNaOneEyZp8Ziro2muJrxRItZekesBm5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224830972393:android:a3d919651f597f81f0ab78",
+        "android_client_info": {
+          "package_name": "com.hfh.hfhblogsection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl4iVZriJJvVWVxAEnhfVymKCvjA-K3BI"
+        },
+        {
+          "current_key": "AIzaSyCNaOneEyZp8Ziro2muJrxRItZekesBm5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224830972393:android:19d7fec3eeaebf13f0ab78",
+        "android_client_info": {
+          "package_name": "com.log28"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224830972393-4r3qh9dikdcg12s3er2uo28rblrpmb2c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.log28",
+            "certificate_hash": "516a5f2992bad98858fd0634486d7d9a11392ba1"
+          }
+        },
+        {
+          "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl4iVZriJJvVWVxAEnhfVymKCvjA-K3BI"
+        },
+        {
+          "current_key": "AIzaSyCNaOneEyZp8Ziro2muJrxRItZekesBm5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224830972393:android:f84937a4f4da3f8bf0ab78",
+        "android_client_info": {
+          "package_name": "com.rahulcodecamp.menstruationcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224830972393-s5mmjcqp5hfbhsv77obge2evmf91hhi3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rahulcodecamp.menstruationcare",
+            "certificate_hash": "0b984583dcb25588607635defefdb3f96ee87aca"
+          }
+        },
+        {
+          "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl4iVZriJJvVWVxAEnhfVymKCvjA-K3BI"
+        },
+        {
+          "current_key": "AIzaSyCNaOneEyZp8Ziro2muJrxRItZekesBm5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224830972393-kkqiot4p91k15hr1bco4hmrb8t1r7i8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
