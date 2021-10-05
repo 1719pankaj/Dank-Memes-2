@@ -23,4 +23,7 @@
     <color name="primary_purple">#7b39ed</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+
+    <color name="red_shade">#E64556</color>
+
 </resources>

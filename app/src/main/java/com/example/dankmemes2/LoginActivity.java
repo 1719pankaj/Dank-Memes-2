@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().hide();
+
         phoneLoginLayout = findViewById(R.id.phoneLoginLayout);
 
         loginBackground = findViewById(R.id.loginBackground);
