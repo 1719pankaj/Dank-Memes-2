@@ -12,6 +12,8 @@
         android:id="@+id/fabBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="@color/red_shade"
+        app:tint="@color/white"
         android:layout_gravity="start|bottom"
         android:layout_margin="24dp"
         android:contentDescription="@string/options"

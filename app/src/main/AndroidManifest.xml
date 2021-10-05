@@ -14,11 +14,11 @@
         android:roundIcon="@mipmap/meme_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DankMemes2">
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".PhoneSignupActivity" />
         <activity android:name=".PhoneLoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".SignupActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
