@@ -44,14 +44,13 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     FirebaseAuth auth;
-    FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         phoneLoginLayout = findViewById(R.id.phoneLoginLayout);
 
@@ -68,8 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
 
         auth = FirebaseAuth.getInstance();
-
-        FirebaseUser currentUser = auth.getCurrentUser();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if(password.length()<6){
                     progressDialog.dismiss();
-                    passwordEditText.setError("password length should be atleast 6");
+                    passwordEditText.setError("password length should be at least 6");
                     Toast.makeText(LoginActivity.this, "Please enter valid password", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -104,47 +101,51 @@ public class LoginActivity extends AppCompatActivity {
                     auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+
+                            progressDialog.dismiss();
+
                             if (task.isSuccessful()){
 
-                                if (!(currentUser.isEmailVerified())) {
-                                    progressDialog.dismiss();
+                                FirebaseUser currentUser = auth.getCurrentUser();
 
-                                    Toast.makeText(LoginActivity.this, "Your email is not verified\nClick on verify now button to send verification code to your registered email id", Toast.LENGTH_LONG).show();
+                                if (currentUser != null) {
+                                    if (currentUser.isEmailVerified()) {
 
-                                    Dialog dialog = new Dialog(LoginActivity.this,R.style.Dialog);
-                                    dialog.setContentView(R.layout.verification_dialog_layout);
-                                    dialog.show();
-                                    Button verifyButton;
-                                    verifyButton = dialog.findViewById(R.id.verifyButton);
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                        Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Your email is not verified\nClick on verify now button to send verification code to your registered email id", Toast.LENGTH_LONG).show();
 
-                                    verifyButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            currentUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                                    Toast.makeText(LoginActivity.this, "Verification link has been sent to your registered email id\nPlease verify that...", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull @NotNull Exception e) {
-                                                    Toast.makeText(LoginActivity.this, "something went wrong"+ e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                                    dialog.dismiss();
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
-                                else {
-                                    progressDialog.dismiss();
+                                        Dialog dialog = new Dialog(LoginActivity.this,R.style.Dialog);
+                                        dialog.setContentView(R.layout.verification_dialog_layout);
+                                        dialog.show();
+                                        Button verifyButton;
+                                        verifyButton = dialog.findViewById(R.id.verifyButton);
 
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                                        verifyButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                currentUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                        Toast.makeText(LoginActivity.this, "Verification link has been sent to your registered email id\nPlease verify that...", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull @NotNull Exception e) {
+                                                        Toast.makeText(LoginActivity.this, "something went wrong"+ e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Error while getting current user", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
                             else {
-                                progressDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, "Error in login! "+ Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
