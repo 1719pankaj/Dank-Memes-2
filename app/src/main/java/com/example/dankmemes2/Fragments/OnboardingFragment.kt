@@ -23,32 +23,11 @@ class OnboardingFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_onboarding, container, false)
 
-        view.nextWpermission.setOnClickListener { dexter() }
-        view.nextWOpermission.setOnClickListener {
+        view.nextWpermission.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_configFragment)
         }
 
         return view
-    }
-
-    fun dexter() {
-        Dexter.withContext(context).withPermissions(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE)
-            .withListener(object: MultiplePermissionsListener {
-                override fun onPermissionsChecked(p0: MultiplePermissionsReport){
-                    if (p0.areAllPermissionsGranted()) {
-                        findNavController().navigate(R.id.action_onboardingFragment_to_configFragment)
-                    } else {
-                        onboardingMessageTV.text = "If you want to continue without permission click continue without functionality Or grant permission"
-                        nextWOpermission.visibility = View.VISIBLE
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(p0: MutableList<PermissionRequest>?, p1: PermissionToken?) {
-                    p1?.continuePermissionRequest()
-                }
-            }).check()
     }
 
 }
