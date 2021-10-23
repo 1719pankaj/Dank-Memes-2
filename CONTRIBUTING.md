@@ -6,6 +6,12 @@ In this guide you will get an overview of the contribution workflow from opening
 
 ## New contributor guide
 
+Please ensure your pull request adheres to the following guidelines:
+
+- Start the Name with a capital.
+- Check your spelling and grammar.
+- Make sure your text editor is set to remove trailing whitespace.(Mandatory)
+
 See the [README](README.md) to get an overview of the project. Here are some helpful resources to get you comfortable with open source contribution:
 
 ### Issues
