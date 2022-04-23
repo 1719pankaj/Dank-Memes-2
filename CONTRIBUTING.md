@@ -1,4 +1,4 @@
-# Welcome to Dank Memes 2 contributing guide <!-- omit in toc -->
+# Welcome to GitHub docs contributing guide <!-- omit in toc -->
 
 Thank you for investing your time in contributing to our project!
 
@@ -18,7 +18,7 @@ See the [README](README.md) to get an overview of the project. Here are some hel
 
 #### Create a new issue
 
-If you spot a problem with anything, search if an issue already exists. If a related issue doesn't exist, you can open a new issue.
+If you spot a problem with anything, search if an issue already exists. If a related issue doesn't exist, you can open a new issue
 
 #### Solve an issue
 
@@ -26,19 +26,18 @@ Scan through our existing issues to find one that interests you. You can narrow 
 
 ### Make Changes
 
-#### The Usual
-1. Fork
-1. Open new branch
-1. Fix/Append changes
-1. Compile
-1. Test/Verify changes
-1. Commit
-1. Push
-1. Check for conflicts
-1. Pull Request
+### The Usual
+Fork -> 
+Compile -> 
+Fix/Append changes -> 
+Check for conflicts -> 
+Push -> 
+Pull Request
 
-#### Your PR is merged!
+### Your PR is merged!
 
 Congratulations
 
-Once your PR is merged, your contributions will be visible publicly
+Once your PR is merged, your contributions will be publicly visibl
+
+Now that you are part of the DankMemes2 community.
