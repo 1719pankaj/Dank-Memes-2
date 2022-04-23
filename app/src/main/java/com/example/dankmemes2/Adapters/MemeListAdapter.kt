@@ -18,7 +18,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -38,7 +37,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 
 
 class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerView.Adapter<MemeListAdapter.MemeViewHolder>() {
@@ -103,34 +101,38 @@ class MemeListAdapter(val activity: Activity, val context: Context) : RecyclerVi
     }
 
     fun shareMeme(title: String, imageView: ImageView) {
+        Dexter.withContext(context).withPermissions(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+            .withListener(object: MultiplePermissionsListener {
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport){
+                    if (p0.areAllPermissionsGranted()) {
+                        val bitmap = (imageView.getDrawable() as BitmapDrawable).bitmap
 
-        try {
-            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-            val cachePath = File(context.cacheDir, "imageview")
-            cachePath.mkdirs()
-            val stream = FileOutputStream("$cachePath/image.jpg") // overwrites this image every time
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.close()
-        }  catch ( e:IOException ) {
-            e.printStackTrace()
-        }
+                        val sdCard = Environment.getExternalStorageDirectory().toString()
+                        val dir = File(sdCard + "/SharedDankMemes")
+                        dir.mkdirs()
+                        val fileName = String.format("%d.jpg", System.currentTimeMillis())
+                        val outFile = File(dir, fileName)
+                        val outStream = FileOutputStream(outFile)
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+                        outStream.flush()
+                        outStream.close()
 
-        val imagePath = File(context.cacheDir, "imageview")
-        val newFile = File(imagePath, "image.jpg")
-        val contentUri = FileProvider.getUriForFile(
-            this.context,
-            "com.example.dankmemes2.fileprovider",
-            newFile
-        )
-
-        if (contentUri != null) {
-            val shareIntent = Intent(Intent.ACTION_SEND)
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri, context.contentResolver.getType(contentUri))
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
-            shareIntent.type = "image/jpeg"
-            context.startActivity(Intent.createChooser(shareIntent,"Choose an app"))
-        }
+                        val intent = Intent(Intent.ACTION_SEND)
+                        intent.type = "image/jpeg"
+                        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(outFile.toString()))
+                        val chooser = Intent.createChooser(intent, "🤣")
+                        context.startActivity(chooser)
+                    }
+                    else {
+                        Toast.makeText(context, "Storage permission required", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onPermissionRationaleShouldBeShown(p0: MutableList<PermissionRequest>?, p1: PermissionToken?) {
+                    p1?.continuePermissionRequest()
+                }
+            }).check()
     }
 
     fun downloadFromUrl(url: String, title: String, silent: Boolean): String  {
