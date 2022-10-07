@@ -3,8 +3,9 @@
 <img src="https://github.com/1719pankaj/Dank-Memes-2/blob/main/Images/meme_icon.png" align="left"
 width="200" hspace="10" vspace="10">
 
-DankMemes is a meme sharing app.  
-DankMemes is free and open source with absolutely no Ads.  
+DankMemes is a meme sharing platform.  
+DankMemes application is free and open source with absolutely no Ads.
+DankMemes helps you to create and share your own memes so that you can enjoy the public responses.
 Latest build available in releases section
 
 ## About
@@ -23,7 +24,7 @@ The android app lets you:
 - Configuration menu for changing sources.
 - Intuitive Onboarding process.
 - Minimal permission required.
-- Can operate withou any user permissions.
+- Can operate without any user permissions.
 
 ## Screenshots
 
