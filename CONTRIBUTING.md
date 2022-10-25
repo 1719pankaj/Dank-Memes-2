@@ -19,6 +19,7 @@ See the [README](README.md) to get an overview of the project. Here are some hel
 #### Create a new issue
 
 If you spot a problem with anything, search if an issue already exists. If a related issue doesn't exist, you can open a new issue
+Same goes for new features, look for a pre-existing feature request, if there's none, create a new issue with the label "feature-request"
 
 #### Solve an issue
 
@@ -38,6 +39,6 @@ Pull Request
 
 Congratulations
 
-Once your PR is merged, your contributions will be publicly visibl
+Once your PR is merged, your contributions will be publicly visible
 
 Now that you are part of the DankMemes2 community.
